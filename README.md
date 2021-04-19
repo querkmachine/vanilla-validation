@@ -15,14 +15,43 @@ new Validate(formElement [, options]);
 - `formElement` is any means you choose of getting a _single_ `<form>`. Use querySelector, use getElementById, loop through every form on the page, it's up to you.
 - `options` is an optional object containing configuration options, described right now.
 
+### Default configuration
+
+```
+{
+  showInlineErrors: true,
+  showErrorSummary: true,
+  disableButtonsOnSubmit: true,
+  submitButtonSelector: 'button[type="submit"], input[type="submit"]',
+  errorSummaryClass: "error-message-summary",
+  inlineErrorClass: "error-message",
+  inputsDeferToFieldsets: [],
+  i18n: {
+    valRequired: "This field is required.",
+    valType: "Value doesn't match expected type.",
+    valTypeColor: "Value should be a valid hexidecimal code (for example, #786999).",
+    valTypeEmail: "Value should be a valid email address (for example, hello@example.com).",
+    valTypeNumber: "Value should be a valid number.",
+    valTypeTel: "Value should be a valid telephone number.",
+    valTypeURL: "Value should be a valid web address, including the protocol (for example, https://example.com).",
+    valPattern: "Value doesn't match expected format.",
+    valMaxlength: "Value cannot be longer than {1} characters. Currently it's {2} characters.",
+    valMinlength: "Value cannot be shorter than {1} characters. Currently it's {2} characters.",
+    valMax: "Value must be {1} or less.",
+    valMin: "Value must be {1} or more.",
+    valStep: "Value must be a multiple of {1}.",
+  }
+}
+```
+
 ### Configuration options
 
-- `showInlineErrors` (boolean, default: `true`) Shows error messages above the respective fields. For radio button groups and inputs defined in `inputsDeferToFieldsets`, the error will be shown below the fieldset legend.
-- `showErrorSummary` (boolean, default: `true`) Shows a summary of error messages at the top of the form, with links to each invalid input.
-- `disableButtonsOnSubmit` (boolean, default: `true`) Disables all `type="submit"` buttons in the form if the form successfully passes validation, and applies `aria-busy="true"`, to prevent multiple clicks sending more than one request.
-- `inputsDeferToFieldsets` (array, default: `[]`) A list of input `id`s. These IDs will defer to their parent fieldset when gathering error labelling and displaying inline error messaging.
-- `inlineErrorClass` (string, default: `"error-message"`) Classes to apply to inline errors.
-- `errorSummaryClass` (string, default: `"error-message-summary"`) Classes to apply to the error summary container.
+- `showInlineErrors` (boolean) Shows error messages above the respective fields. For radio button groups and inputs defined in `inputsDeferToFieldsets`, the error will be shown below the fieldset legend.
+- `showErrorSummary` (boolean) Shows a summary of error messages at the top of the form, with links to each invalid input.
+- `disableButtonsOnSubmit` (boolean) Disables all `type="submit"` buttons in the form if the form successfully passes validation—and applies `aria-busy="true"`—to prevent multiple clicks sending more than one request.
+- `inputsDeferToFieldsets` (array) A list of input `id`s. These IDs will defer to their parent fieldset when gathering error labelling and displaying inline error messaging.
+- `inlineErrorClass` (string) Classes to apply to inline errors.
+- `errorSummaryClass` (string) Classes to apply to the error summary container.
 - `i18n` (object) Object to override the default error messaging, described right now.
 
 ### Error messages
@@ -55,6 +84,7 @@ Vanilla Validation is opinionated. That means it makes some (hopefully sensible)
 
 - All validations are activated and configured via HTML attributes.
 - A user's browser must support the specific validation type for it to work. See the table above for CanIUse links for browser support. (And you should be implementing the same validation on the server-side anyway!)
+- Inline error messages are always displayed above the input, on the basis that it constitutes the most logical and accessibility-focused reading order (input label asks for a value -> error indicates problem with value -> input field to correct value).
 - Radio buttons are always validated in groups, and groups of radio button are expected to always be inside of a fieldset. This is because many validation functions for radio buttons work on a group level, and groups of inputs semantically belong in fieldsets.
 - All inputs (be they text, checkbox, select, etc.) that accept validation should have an `id` attribute. This ID is used to link error messaging to the input.
 - If a form fails validation, Vanilla Validate will always jump to either the first invalid input or to the error summary (if enabled by `showErrorSummary`).
