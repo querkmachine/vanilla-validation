@@ -105,7 +105,6 @@ class Validate {
       }
     });
     // Return error list
-    console.log(this.errorList);
     return this.errorList;
   }
   printErrors() {
