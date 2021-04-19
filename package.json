@@ -1,0 +1,22 @@
+{
+  "name": "kims-vanilla-validation",
+  "version": "1.0.0",
+  "description": "Brings ValidityState inline.",
+  "main": "validate.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/querkmachine/vanilla-validation.git"
+  },
+  "author": "Kimberly Grey <hi@berly.kim>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/querkmachine/vanilla-validation/issues"
+  },
+  "homepage": "https://github.com/querkmachine/vanilla-validation#readme"
+}
