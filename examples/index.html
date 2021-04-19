@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>validate</title>
+    <style>
+      label {
+        display: block;
+      }
+      .error-message {
+        color: red;
+      }
+      .error-message-summary {
+        border: 2px solid red;
+        padding: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="display: flex; flex-direction: row">
+      <form id="testform1">
+        <h1>Invalid form</h1>
+        <div>
+          <label for="noConstraint">No validation constraints</label>
+          <div id="noConstraint-Hint">No input requirements.</div>
+          <input
+            id="noConstraint"
+            name="noConstraint"
+            type="text"
+            aria-describedby="noConstraint-Hint"
+          />
+        </div>
+        <div>
+          <label for="required">Required field</label>
+          <div id="required-Hint">Value must be non-whitespace value.</div>
+          <input
+            id="required"
+            name="required"
+            type="text"
+            aria-describedby="required-Hint"
+            required
+          />
+        </div>
+        <div>
+          <label for="typeMismatchEmail">Type mismatch (email)</label>
+          <div>Value must be an email address.</div>
+          <input
+            id="typeMismatchEmail"
+            name="typeMismatchEmail"
+            type="email"
+            value="beep"
+          />
+        </div>
+        <div>
+          <label for="typeMismatchUrl">Type mismatch (URL)</label>
+          <div>Value must be a web address.</div>
+          <input
+            id="typeMismatchUrl"
+            name="typeMismatchUrl"
+            type="url"
+            value="boop"
+          />
+        </div>
+        <div>
+          <label for="patternMismatch">Pattern mismatch</label>
+          <div>Value must only contain letters.</div>
+          <input
+            id="patternMismatch"
+            name="patternMismatch"
+            type="text"
+            pattern="[A-Za-z]+"
+            value="ABC123"
+          />
+        </div>
+        <div>
+          <label for="tooLong">Too long</label>
+          <div>Value must be less than 10 characters.</div>
+          <input
+            id="tooLong"
+            name="tooLong"
+            type="text"
+            maxlength="10"
+            value="Pneumonoultramicroscopicsilicovolcanoconiosis"
+          />
+        </div>
+        <div>
+          <label for="tooShort">Too short</label>
+          <div>Value must be more than 5 characters.</div>
+          <input
+            id="tooShort"
+            name="tooShort"
+            type="text"
+            minlength="5"
+            value="Hi"
+          />
+        </div>
+        <div>
+          <label for="rangeOverflow">Range overflow</label>
+          <div>Value must be less than 6.</div>
+          <input
+            id="rangeOverflow"
+            name="rangeOverflow"
+            type="number"
+            max="6"
+            value="10"
+          />
+        </div>
+        <div>
+          <label for="rangeUnderflow">Range underflow</label>
+          <div>Value must be more than 4.</div>
+          <input
+            id="rangeUnderflow"
+            name="rangeUnderflow"
+            type="number"
+            min="4"
+            value="2"
+          />
+        </div>
+        <div>
+          <label for="stepMismatch">Step mismatch</label>
+          <div>Value must be a multiple of 2.</div>
+          <input
+            id="stepMismatch"
+            name="stepMismatch"
+            type="number"
+            step="2"
+            value="5"
+          />
+        </div>
+        <fieldset>
+          <legend>Fieldset (radios)</legend>
+          <label>
+            <input type="radio" name="FieldsetRadios" value="1" />
+            (1) Not required
+          </label>
+          <label>
+            <input type="radio" name="FieldsetRadios" value="2" required />
+            (2) Required
+          </label>
+          <label>
+            <input type="radio" name="FieldsetRadios" value="3" />
+            (3) Not required
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Fieldset (checkboxes)</legend>
+          <label>
+            <input type="checkbox" name="FieldsetCheckboxes[]" value="1" />
+            (1) Not required
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              name="FieldsetCheckboxes[]"
+              value="2"
+              required
+            />
+            (2) Required
+          </label>
+          <label>
+            <input type="checkbox" name="FieldsetCheckboxes[]" value="3" />
+            (3) Not required
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Fieldset (inputs)</legend>
+          <div>
+            <label for="FieldsetInput1">Required input</label>
+            <input
+              id="FieldsetInput1"
+              name="FieldsetInput1"
+              type="text"
+              required
+            />
+          </div>
+          <div>
+            <label for="FieldsetInput2">Non-required input</label>
+            <input id="FieldsetInput2" name="FieldsetInput2" type="text" />
+          </div>
+          <div>
+            <label for="FieldsetInput3"
+              >Required input (deferred to fieldset)</label
+            >
+            <input
+              id="FieldsetInput3"
+              name="FieldsetInput3"
+              type="text"
+              required
+            />
+          </div>
+        </fieldset>
+        <button type="submit">Submit button</button>
+        <button type="submit" name="altSubmit" value="true">
+          Alt. submit button
+        </button>
+      </form>
+      <form id="testform2">
+        <h1>Valid form</h1>
+        <div>
+          <label for="noConstraint2">No validation constraints</label>
+          <div>No input requirements.</div>
+          <input id="noConstraint2" type="text" />
+        </div>
+        <div>
+          <label for="required2">Required field</label>
+          <div>Value must be non-whitespace value.</div>
+          <input id="required2" type="text" value="Hi" required />
+        </div>
+        <div>
+          <label for="typeMismatchEmail2">Type mismatch (email)</label>
+          <div>Value must be an email address.</div>
+          <input
+            id="typeMismatchEmail2"
+            type="email"
+            value="beep@example.com"
+          />
+        </div>
+        <div>
+          <label for="typeMismatchUrl2">Type mismatch (URL)</label>
+          <div>Value must be a web address.</div>
+          <input id="typeMismatchUrl2" type="url" value="http://boop.com" />
+        </div>
+        <div>
+          <label for="patternMismatch2">Pattern mismatch</label>
+          <div>Value must only contain letters.</div>
+          <input
+            id="patternMismatch2"
+            type="text"
+            pattern="[A-Za-z]+"
+            value="ABCDEF"
+          />
+        </div>
+        <div>
+          <label for="tooLong2">Too long</label>
+          <div>Value must be less than 10 characters.</div>
+          <input id="tooLong2" type="text" maxlength="10" value="Nice" />
+        </div>
+        <div>
+          <label for="tooShort2">Too short</label>
+          <div>Value must be more than 5 characters.</div>
+          <input id="tooShort2" type="text" minlength="5" value="Bouyant" />
+        </div>
+        <div>
+          <label for="rangeOverflow2">Range overflow</label>
+          <div>Value must be less than 6.</div>
+          <input id="rangeOverflow2" type="number" max="6" value="4" />
+        </div>
+        <div>
+          <label for="rangeUnderflow2">Range underflow</label>
+          <div>Value must be more than 4.</div>
+          <input id="rangeUnderflow2" type="number" min="4" value="6" />
+        </div>
+        <div>
+          <label for="stepMismatch2">Step mismatch</label>
+          <div>Value must be a multiple of 2.</div>
+          <input id="stepMismatch2" type="number" step="2" value="8" />
+        </div>
+        <fieldset>
+          <legend>Fieldset (radios)</legend>
+          <label>
+            <input type="radio" name="FieldsetRadios2" value="1" />
+            (1) Not required
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="FieldsetRadios2"
+              value="2"
+              required
+              checked
+            />
+            (2) Required
+          </label>
+          <label>
+            <input type="radio" name="FieldsetRadios2" value="3" />
+            (3) Not required
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Fieldset (checkboxes)</legend>
+          <label>
+            <input type="checkbox" name="FieldsetCheckboxes2[]" value="1" />
+            (1) Not required
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              name="FieldsetCheckboxes2[]"
+              value="2"
+              required
+              checked
+            />
+            (2) Required
+          </label>
+          <label>
+            <input type="checkbox" name="FieldsetCheckboxes2[]" value="3" />
+            (3) Not required
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>Fieldset (inputs)</legend>
+          <div>
+            <label for="FieldsetInput12">Required input</label>
+            <input id="FieldsetInput12" type="text" required value="Filled" />
+          </div>
+          <div>
+            <label for="FieldsetInput22">Non-required input</label>
+            <input id="FieldsetInput22" type="text" />
+          </div>
+          <div>
+            <label for="FieldsetInput32"
+              >Required input (deferred to fieldset)</label
+            >
+            <input id="FieldsetInput32" type="text" required value="Filled" />
+          </div>
+        </fieldset>
+        <button type="submit">Submit button</button>
+        <button type="submit" name="altSubmit" value="true">
+          Alt. submit button
+        </button>
+      </form>
+    </div>
+
+    <script src="../validate.js"></script>
+    <script>
+      new Validate(document.getElementById("testform1"), {
+        inputsDeferToFieldsets: ["FieldsetInput3"],
+      });
+    </script>
+    <script>
+      new Validate(document.getElementById("testform2"));
+    </script>
+  </body>
+</html>
