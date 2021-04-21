@@ -88,5 +88,6 @@ Vanilla Validation is opinionated. That means it makes some (hopefully sensible)
 - Radio buttons are always validated in groups, and groups of radio button are expected to always be inside of a fieldset. This is because many validation functions for radio buttons work on a group level, and groups of inputs semantically belong in fieldsets.
 - All inputs (be they text, checkbox, select, etc.) that accept validation should have an `id` attribute. This ID is used to link error messaging to the input.
 - If a form fails validation, Vanilla Validate will always jump to either the first invalid input or to the error summary (if enabled by `showErrorSummary`).
+- Validation is only performed on form submission, not on input blur or when the value is changed.
 - If the submit button a user clicks has a `name` attribute, the `name` and `value` will be automatically copied to a hidden input to avoid this information being lost if the button is disabled by `disableButtonsOnSubmit` (this is carried out even if `disableButtonsOnSubmit` is set to false).
 - If a `<form>` has the `novalidate` attribute at the point that Vanilla Validation is initialised, Vanilla Validation will not run.
