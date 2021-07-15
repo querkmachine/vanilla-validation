@@ -232,6 +232,10 @@ class Validate {
       }
     }
     // For everything else, just the input label should do.
+    if(!$input.labels.length) {
+      console.error("Form element doesn't have associated label.", $input);
+      return "";
+    }
     return $input.labels[0].innerText.trim();
   }
   getInputErrorMessage($input) {
