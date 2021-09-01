@@ -1,6 +1,8 @@
-# Next
+# 1.1.0
 
-- Return console error if an input doesn't have an associated label.
+- Added missing support for the `formnovalidate` attribute.
+- Added `[type="image"]` to the default submit button selector.
+- An error is now displayed in the browser console if an input is missing a label.
 
 # 1.0.0
 
