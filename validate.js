@@ -73,12 +73,18 @@ class Validate {
   onSubmit(e) {
     e.preventDefault();
     this.errorList = this.findErrors();
-    if (this.errorList.length > 0) {
-      // Form is not valid, show the errors
-      this.printErrors();
-    } else {
-      // Form is valid
+    // If submit button clicked includes `formnovalidate`
+    // Or there were no errors found
+    // Submit the form
+    if(
+      this.clickedSubmitButton.formNoValidate ||
+      this.errorList.length === 0
+    ) {
       this.submitForm();
+    }
+    // Otherwise, print the list of errors
+    else {
+      this.printErrors();
     }
   }
   onClickSubmit(e) {
