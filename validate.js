@@ -11,7 +11,7 @@ class Validate {
         showInlineErrors: true,
         showErrorSummary: true,
         disableButtonsOnSubmit: true,
-        submitButtonSelector: '[type="submit"]',
+        submitButtonSelector: '[type="submit"], [type="image"]',
         errorSummaryClass: "error-message-summary",
         inlineErrorClass: "error-message",
         inputsDeferToFieldsets: [], // array of input IDs
@@ -73,12 +73,18 @@ class Validate {
   onSubmit(e) {
     e.preventDefault();
     this.errorList = this.findErrors();
-    if (this.errorList.length > 0) {
-      // Form is not valid, show the errors
-      this.printErrors();
-    } else {
-      // Form is valid
+    // If submit button clicked includes `formnovalidate`
+    // Or there were no errors found
+    // Submit the form
+    if(
+      this.clickedSubmitButton.formNoValidate ||
+      this.errorList.length === 0
+    ) {
       this.submitForm();
+    }
+    // Otherwise, print the list of errors
+    else {
+      this.printErrors();
     }
   }
   onClickSubmit(e) {
@@ -232,6 +238,10 @@ class Validate {
       }
     }
     // For everything else, just the input label should do.
+    if(!$input.labels.length) {
+      console.error("Form element doesn't have associated label.", $input);
+      return "";
+    }
     return $input.labels[0].innerText.trim();
   }
   getInputErrorMessage($input) {
