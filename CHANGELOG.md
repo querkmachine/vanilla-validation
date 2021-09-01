@@ -1,3 +1,7 @@
+# 1.1.1
+
+- Fixed Validate class not being exported.
+
 # 1.1.0
 
 - Added missing support for the `formnovalidate` attribute.

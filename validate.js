@@ -1,4 +1,4 @@
-class Validate {
+export default class Validate {
   constructor($form, options = {}) {
     // If the form has the `novalidate` attribute, quit out
     if ($form.noValidate) {
