@@ -11,7 +11,7 @@ class Validate {
         showInlineErrors: true,
         showErrorSummary: true,
         disableButtonsOnSubmit: true,
-        submitButtonSelector: '[type="submit"]',
+        submitButtonSelector: '[type="submit"], [type="image"]',
         errorSummaryClass: "error-message-summary",
         inlineErrorClass: "error-message",
         inputsDeferToFieldsets: [], // array of input IDs
