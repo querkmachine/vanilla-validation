@@ -1,4 +1,4 @@
-export default class Validate {
+class Validate {
   constructor($form, options = {}) {
     // If the form has the `novalidate` attribute, quit out
     if ($form.noValidate) {
@@ -365,3 +365,5 @@ export default class Validate {
     this.$form.submit();
   }
 }
+
+export { Validate };

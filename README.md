@@ -1,19 +1,29 @@
 # Vanilla Validation
 
-_Version 1. Still being worked on slowly. Constructuve feedback appreciated._
-
 Vanilla Validation is a little "set and forget" JavaScript class that leverages the ValidityState API for customised client-side validation. It aims to be accessible and have no external dependencies, and it's a little bit opinionated (hopefully, in a good way).
 
-It's written in modern JavaScript, so you may need to pass it through Babel and polyfill missing functions for older browsers.
+_This is my first npm-published FOSS library. Patience with any publishing mistakes or little weirdsies is appreciated, as is any constructive feedback._
+
+## Install
+
+```
+// npm
+npm install @querkmachine/vanilla-validation
+
+// Yarn
+yarn add @querkmachine/vanilla-validation
+```
 
 ## Usage
 
 ```
+import Validate from "@querkmachine/vanilla-validation";
 new Validate(formElement [, options]);
 ```
 
-- `formElement` is any means you choose of getting a _single_ `<form>`. Use querySelector, use getElementById, loop through every form on the page, it's up to you.
-- `options` is an optional object containing configuration options, described right now.
+- `formElement` is any means you choose of getting a _single_ `<form>`. Use querySelector, use getElementById, loop through every form on the page, how you do it is up to you.
+- `options` is an optional object containing configuration options.
+
 
 ### Default configuration
 
@@ -22,7 +32,7 @@ new Validate(formElement [, options]);
   showInlineErrors: true,
   showErrorSummary: true,
   disableButtonsOnSubmit: true,
-  submitButtonSelector: 'button[type="submit"], input[type="submit"]',
+  submitButtonSelector: '[type="submit"], [type="image"]',
   errorSummaryClass: "error-message-summary",
   inlineErrorClass: "error-message",
   inputsDeferToFieldsets: [],
@@ -46,15 +56,15 @@ new Validate(formElement [, options]);
 
 ### Configuration options
 
-- `showInlineErrors` (boolean) Shows error messages above the respective fields. For radio button groups and inputs defined in `inputsDeferToFieldsets`, the error will be shown below the fieldset legend.
-- `showErrorSummary` (boolean) Shows a summary of error messages at the top of the form, with links to each invalid input.
-- `disableButtonsOnSubmit` (boolean) Disables all `type="submit"` buttons in the form if the form successfully passes validation—and applies `aria-busy="true"`—to prevent multiple clicks sending more than one request.
-- `inputsDeferToFieldsets` (array) A list of input `id`s. These IDs will defer to their parent fieldset when gathering error labelling and displaying inline error messaging.
-- `inlineErrorClass` (string) Classes to apply to inline errors.
-- `errorSummaryClass` (string) Classes to apply to the error summary container.
+- `showInlineErrors` (boolean) Shows error messages above the respective fields. For radio button groups and inputs defined in `inputsDeferToFieldsets`, the error will be shown below the fieldset legend. Default: `true`.
+- `showErrorSummary` (boolean) Shows a summary of error messages at the top of the form, with links to each invalid input. Default: `true`.
+- `disableButtonsOnSubmit` (boolean) Disables all `type="submit"` buttons in the form if the form successfully passes validation—and applies `aria-busy="true"`—to prevent multiple clicks sending more than one request. Default: `true`.
+- `inputsDeferToFieldsets` (array) A list of input `id`s. These IDs will defer to their parent fieldset when gathering error labelling and displaying inline error messaging. Empty by default, however note that radio buttons ALWAYS defer to their fieldsets.
+- `inlineErrorClass` (string) Classes to apply to inline errors. Default: `"error-message"`.
+- `errorSummaryClass` (string) Classes to apply to the error summary container. Default: `"error-message-summary"`.
 - `i18n` (object) Object to override the default error messaging, described right now.
 
-### Error messages
+### Customising error messages
 
 Global error messages are defined via the `i18n` configuration option. Individual inputs can display custom error messages, which are defined in HTML using `data-*` attributes.
 
@@ -87,7 +97,7 @@ Vanilla Validation is opinionated. That means it makes some (hopefully sensible)
 - Inline error messages are always displayed above the input, on the basis that it constitutes the most logical and accessibility-focused reading order (input label asks for a value -> error indicates problem with value -> input field to correct value).
 - Radio buttons are always validated in groups, and groups of radio button are expected to always be inside of a fieldset. This is because many validation functions for radio buttons work on a group level, and groups of inputs semantically belong in fieldsets.
 - All inputs (be they text, checkbox, select, etc.) that accept validation should have an `id` attribute. This ID is used to link error messaging to the input.
-- If a form fails validation, Vanilla Validate will always jump to either the first invalid input or to the error summary (if enabled by `showErrorSummary`).
+- If a form fails validation, Vanilla Validation will always jump to either the first invalid input or to the error summary (if enabled by `showErrorSummary`).
 - Validation is only performed on form submission, not on input blur or when the value is changed.
 - If the submit button a user clicks has a `name` attribute, the `name` and `value` will be automatically copied to a hidden input to avoid this information being lost if the button is disabled by `disableButtonsOnSubmit` (this is carried out even if `disableButtonsOnSubmit` is set to false).
 - If a `<form>` has the `novalidate` attribute at the point that Vanilla Validation is initialised, Vanilla Validation will not run.
