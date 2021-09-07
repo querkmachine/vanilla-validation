@@ -1,3 +1,9 @@
+# 1.2.0
+
+This release overhauls the build process to make Vanilla Validation easier to use when added as a dependency through npm. The library itself is functionally identical to previous versions. 
+
+There are now separate CommonJS/UMD (validate.js) and ESM (validate.mjs) versions of Vanilla Validation. Most build tools should be able to determine which version to use automatically. Both come pre-minified and with source maps provided. 
+
 # 1.1.1
 
 - Fixed Validate class not being exported.
