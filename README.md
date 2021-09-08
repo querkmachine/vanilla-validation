@@ -17,7 +17,7 @@ yarn add @querkmachine/vanilla-validation
 ## Usage
 
 ```
-import { Validate } from "@querkmachine/vanilla-validation";
+import Validate from "@querkmachine/vanilla-validation";
 new Validate(formElement [, options]);
 ```
 
