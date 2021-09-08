@@ -366,4 +366,4 @@ class Validate {
   }
 }
 
-export { Validate };
+export default Validate;
