@@ -1,6 +1,6 @@
 {
   "name": "@querkmachine/vanilla-validation",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Accessible, styleable, customisable ValidityState.",
   "author": "Kimberly Grey <hi@berly.kim>",
   "license": "MIT",
