@@ -23,7 +23,7 @@
     "validate.min.js.map"
   ],
   "scripts": {
-    "test": "jest --config .jest.js",
+    "test": "jest --config .jest.js --verbose",
     "build": "rollup -c .rollup.js"
   },
   "devDependencies": {

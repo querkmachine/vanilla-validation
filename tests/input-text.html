@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<form id="form" method="GET">
+			<!-- No constraints -->
+			<div>
+				<label for="inputNoConstraints">No constraints</label>
+				<input id="inputNoConstraints" type="text">
+			</div>
+			<!-- Required -->
+			<div>
+				<label for="inputRequired">Required</label>
+				<input id="inputRequired" type="text" required>
+			</div>
+			<!-- Minlength -->
+			<div>
+				<label for="inputMinlength">Minlength</label>
+				<input id="inputMinlength" type="text" minlength="5">
+			</div>
+			<!-- Maxlength (see README for why this test uses a pre-populated value) -->
+			<div>
+				<label for="inputMaxlength">Maxlength</label>
+				<input id="inputMaxlength" type="text" maxlength="5" value="Pinkie Pie">
+			</div>
+			<!-- Pattern -->
+			<div>
+				<label for="inputPattern">Pattern</label>
+				<input id="inputPattern" type="text" pattern="[0-9]+">
+			</div>
+			<!-- Submit buttons -->
+			<button type="submit" id="submitWithValidation">Validate</button><br>
+		</form>
+		<script src="../validate.min.js"></script>
+		<script>
+			new Validate(
+				document.getElementById("form")
+			);
+		</script>
+	</body>
+</html>
