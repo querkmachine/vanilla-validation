@@ -1,3 +1,13 @@
+# 1.3.0 (2021-10-19)
+
+Adds IIFE (in-browser compatible) export.
+
+There are now three distributed versions of Vanilla Validation available:
+
+- validate.min.js (IIFE, can be used directly in a browser)
+- validate.js (CommonJS/UMD, can be used with `require`)
+- validate.mjs (ESM, can be used with `import`)
+
 # 1.2.1 (2021-09-08)
 
 The build process changes in 1.2.0 inadvertently changed Vanilla Validation from using a default export to a named export, introducing a breaking change as it required the importing code to be modified appropriately. 
