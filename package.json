@@ -1,6 +1,6 @@
 {
   "name": "@querkmachine/vanilla-validation",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "Accessible, styleable, customisable ValidityState.",
   "author": "Kimberly Grey <hi@berly.kim>",
   "license": "MIT",
@@ -18,7 +18,9 @@
     "validate.js",
     "validate.js.map",
     "validate.mjs",
-    "validate.mjs.map"
+    "validate.mjs.map",
+    "validate.min.js",
+    "validate.min.js.map"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
