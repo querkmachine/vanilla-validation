@@ -16,18 +16,39 @@ yarn add @querkmachine/vanilla-validation
 
 ## Usage
 
+In the browser:
+```js
+<script src="path/to/validate.min.js"></script>
+
+<script>
+  const formElement = document.getElementById("form"); // or whatever other method you choose
+  new Validate(formElement [, options]);
+</script>
 ```
-import { Validate } from "@querkmachine/vanilla-validation";
+
+With CommonJS/UMD:
+```js
+const Validate = require("@querkmachine/vanilla-validation");
+
+const formElement = document.getElementById("form"); // or whatever other method you choose
 new Validate(formElement [, options]);
 ```
 
-- `formElement` is any means you choose of getting a _single_ `<form>`. Use querySelector, use getElementById, loop through every form on the page, how you do it is up to you.
+With ESM:
+```js
+import Validate from "@querkmachine/vanilla-validation";
+
+const formElement = document.getElementById("form"); // or whatever other method you choose
+new Validate(formElement [, options]);
+```
+
+- `formElement` doesn't have to use `getElementById`, this can be any means you choose of getting a _single_ `<form>` element. Use querySelector, loop through every form on the page, do something else entirely. How you do it is up to you.
 - `options` is an optional object containing configuration options.
 
 
 ### Default configuration
 
-```
+```js
 {
   showInlineErrors: true,
   showErrorSummary: true,
